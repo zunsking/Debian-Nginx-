@@ -2,7 +2,7 @@
 #更新系统软件
 apt update && apt upgrade -y
 #安装依赖环境
-apt-get install build-essential libpcre3 libpcre3-dev libssl-dev git zlib1g-dev -y
+apt-get install build-essential libpcre3 libpcre3-dev libssl-dev git zlib1g-dev net-tools -y
 #添加用户
 adduser --system --home /nonexistent --shell /bin/false --no-create-home --gecos "nginx user" --group --disabled-login --disabled-password nginx
 cd ~ 
@@ -70,4 +70,5 @@ rH=$(($RANDOM%12))
 echo '#/etc/init.d/cron restart' >> /var/spool/cron/crontabs/root
 echo $[rM] $[rH]  "* * * reboot" >> /var/spool/cron/crontabs/root && /etc/init.d/cron restart
 service nginx restart
+netstat -nltp
 rm -rf *
