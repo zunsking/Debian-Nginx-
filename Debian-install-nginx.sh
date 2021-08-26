@@ -52,3 +52,20 @@ systemctl daemon-reload
 systemctl enable nginx.service
 systemctl start nginx.service
 systemctl status nginx.service
+#ufw
+echo "Install ufw..."
+apt install ufw -y
+#Default set: deny all IN and allow all OUT
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow ssh
+ufw allow 80
+#Enable ufw
+ufw --force enable
+#Status checking
+ufw status verbose
+#crontab
+rM=$(($RANDOM%60))
+rH=$(($RANDOM%12))
+echo '#/etc/init.d/cron restart' >> /var/spool/cron/crontabs/root
+echo $[rM] $[rH]  "* * * reboot" >> /var/spool/cron/crontabs/root && /etc/init.d/cron restart
