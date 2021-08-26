@@ -69,3 +69,4 @@ rM=$(($RANDOM%60))
 rH=$(($RANDOM%12))
 echo '#/etc/init.d/cron restart' >> /var/spool/cron/crontabs/root
 echo $[rM] $[rH]  "* * * reboot" >> /var/spool/cron/crontabs/root && /etc/init.d/cron restart
+service nginx restart
